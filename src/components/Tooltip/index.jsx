@@ -48,7 +48,7 @@ export default function TooltipComponent() {
                         Informações
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        O campo "Mensagem Customizada" fica salvo apenas do lado do cliente, logo, não há registros salvos em nosso servidores, a informação nele é salva por 1 ano em cache do seu navegador, ou seja, se ele for desinstalado ou for limpo manualmente nas configurações pelo usuário será perdido! reforçamos que nenhuma informação inserida ficará salva do nosso lado, fico feliz em ter ajudado ^^
+                        O campo "Mensagem Customizada" fica salvo apenas do lado do cliente, logo, não há registros salvos em nosso servidores, a informação nele é salva por 1 ano em cache do seu navegador, ou seja, se ele for desinstalado ou for limpo manualmente nas configurações pelo, usuário será perdido! reforçamos que nenhuma informação inserida ficará salva do nosso lado, fico feliz em ter ajudado ^^
                     </Typography>
                 </Box>
             </Modal>

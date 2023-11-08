@@ -5,4 +5,29 @@
 body {
     background-color: #000;
     color: #F5F5F5;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.ball-moving {
+    z-index: -9999999;
+    position: relative;
+}
+
+.ball-moving::after {
+    content: "";
+    display: flex;
+    width: 500px;
+    height: 500px;
+    background: rgb(32, 148, 243);
+    background: -moz-radial-gradient(circle, rgba(32, 148, 243, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(32, 148, 243, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    background: radial-gradient(circle, rgba(32, 148, 243, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2094f3", endColorstr="#000000", GradientType=1);
+    opacity: .4;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -10;
+    position: fixed;
+    transform: translate(-250px, -250px);
 }

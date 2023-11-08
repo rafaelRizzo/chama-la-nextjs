@@ -1,4 +1,6 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Form } from "@/components/Form";
+import { useState, useEffect } from 'react';
 
 const darkTheme = createTheme({
     palette: {
@@ -6,14 +8,31 @@ const darkTheme = createTheme({
     },
 });
 
-import { Form } from "@/components/Form";
-
 export default function Home() {
+    const [movingX, setMovingX] = useState(0);
+    const [movingY, setMovingY] = useState(0);
+
+    useEffect(() => {
+        const mouseMoving = (e) => {
+            setMovingX(e.clientX);
+            setMovingY(e.clientY);
+        };
+
+        document.addEventListener('mousemove', mouseMoving);
+
+        return () => {
+            document.removeEventListener('mousemove', mouseMoving);
+        };
+    }, []);
+
     return (
         <>
             <ThemeProvider theme={darkTheme}>
-                <Form />
+                <div className="container_ball">
+                    <div className='ball-moving' style={{ left: movingX + 'px', top: movingY + 'px' }}></div>
+                    <Form />
+                </div>
             </ThemeProvider>
         </>
-    )
+    );
 }

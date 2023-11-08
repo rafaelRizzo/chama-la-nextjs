@@ -1,52 +1,45 @@
 'use client'
 
+// Imports gerais
 import React, { useState, useEffect } from 'react';
+import styles from "@/components/Form/Form.module.css";
 import Cookies from 'js-cookie';
 import { RiWhatsappFill, RiSendPlaneFill } from "react-icons/ri";
-import { Button, TextField } from "@mui/material";
-import styles from "@/components/Form/Form.module.css";
 import TooltipComponent from '@/components/Tooltip/';
 
+import { Button, TextField } from "@mui/material";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 export const Form = () => {
-    const [cookieExists, setCookieExists] = useState('');
-    const [currentDate, setCurrentDate] = useState('');
-    const [isChecked, setIsChecked] = useState(true);
-    const [error, setError] = useState(false);
+    const [numberToCall, setNumberToCall] = useState(''); // Hook para o input do numero
+    const [cookieExists, setCookieExists] = useState(''); // Hook para o textarea da mensagem custom
+    const [currentDate, setCurrentDate] = useState(''); // Hook para a hora
+    const [isChecked, setIsChecked] = useState(true);  // Hook para o select
+    const [error, setError] = useState(false); // Hook para validação do input 
 
-    const handleSwitchChange = (event) => {
+    const handleSwitchChange = (event) => { // Função para alterar o estado do select
         setIsChecked(event.target.checked);
     };
 
-    useEffect(() => {
-        // Verifique se o cookie existe no início
-        const meuCookie = Cookies.get('msgCustom');
-        if (meuCookie) {
-            setCookieExists(meuCookie);
-        }
-    }, []);
-
-    const isNumeric = (str) => {
-        // Use uma expressão regular para verificar se a string contém apenas números
+    const isNumeric = (str) => { // Use uma expressão regular para verificar se a string contém apenas números
         return /^\d+$/.test(str);
     };
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event) => { // Função para manipular o form
         event.preventDefault();
-        const numberValue = event.target.querySelector("#outlined-basic").value;
-        const textareaValue = event.target.querySelector("#outlined-multiline-static").value;
+        let numberValue = numberToCall // Definindo a variável para receber o state do input número
+        let textareaValue = event.target.querySelector("#outlined-multiline-static").value; // Definindo variável para receber o valor da mensagem custom
 
-        // Verifique se o campo de entrada contém apenas números
+        // Função para verificar se o campo de entrada contém apenas números
         if (!isNumeric(numberValue)) {
             // O campo de entrada contém caracteres não numéricos
             setError(true);
             return;
         }
 
-        // Configure o cookie com SameSite=None e secure=true
+        // Configurando e setando o Cookie
         Cookies.set('msgCustom', textareaValue, {
             expires: 365,
             sameSite: 'None',
@@ -57,7 +50,6 @@ export const Form = () => {
         setError(false); // Redefina o erro para falso após o envio bem-sucedido
 
         // Abra a página do WhatsApp com a URL apropriada
-
         if (isChecked) {
             const whatsappURL = `https://api.whatsapp.com/send?1=pt_BR&phone=55${numberValue}`;
             window.open(whatsappURL, '_blank');
@@ -65,13 +57,23 @@ export const Form = () => {
             const whatsappURL = `https://web.whatsapp.com/send?phone=55${numberValue}`;
             window.open(whatsappURL, '_blank');
         }
+
+        numberValue = setNumberToCall('') // Limpo o input para o usuário
     };
 
-    const handleTextareaChange = (event) => {
+    const handleTextareaChange = (event) => { // Atualizando o valor do estado do textarea
         setCookieExists(event.target.value);
     };
 
-    // Atualize a data atual a cada segundo
+    useEffect(() => {
+        // Verifique se o cookie existe no início
+        const meuCookie = Cookies.get('msgCustom');
+        if (meuCookie) {
+            setCookieExists(meuCookie);
+        }
+    }, []);
+
+    // Atualizando a data atual a cada segundo
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDate(`${new Date().getHours()}h`);
@@ -84,12 +86,14 @@ export const Form = () => {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} >
             <form action="" onSubmit={handleFormSubmit}>
                 <RiWhatsappFill />
                 <h1>Inicializador de Conversa</h1>
 
+                {/* Info box inputs e select */}
                 <div className={styles.container_inputs}>
+                    {/* Info mostra o input do número que quer chamar */}
                     <TextField
                         error={error} // Adicione a propriedade error para estilizar o campo quando há erro
                         helperText={error && 'Só é permitido números!'}
@@ -98,7 +102,12 @@ export const Form = () => {
                         variant="outlined"
                         type='tel'
                         autoComplete='off'
+                        value={numberToCall}
+                        onChange={(e) => setNumberToCall(e.target.value)}
                     />
+                    {/*  */}
+
+                    {/* Info mostra textarea */}
                     <div className={styles.container_textarea}>
                         <TextField
                             id="outlined-multiline-static"
@@ -112,22 +121,35 @@ export const Form = () => {
                             <TooltipComponent />
                         </div>
                     </div>
+                    {/*  */}
 
+                    {/* Info mostra select */}
                     <FormGroup>
                         <FormControlLabel id='check_app'
                             control={<Switch checked={isChecked} onChange={handleSwitchChange} />} label="Abrir via App" />
                     </FormGroup >
+                    {/*  */}
                 </div>
+                {/*  */}
+
+                {/* Botão principal */}
                 <Button type="submit" variant="contained" className={styles.container_btn}>
                     Chamar
                     <RiSendPlaneFill />
                 </Button>
+                {/*  */}
 
-                <i><a href="https://www.linkedin.com/in/rafael-rizzo-breschi-b02547216/" target="_blank">Powered - Rafael Rizzo</a></i>
+                {/* Info mostra Linkedin */}
+                <i>
+                    <a href="https://www.linkedin.com/in/rafael-rizzo-breschi-b02547216/" target="_blank">Powered - Rafael Rizzo</a>
+                </i>
+                {/*  */}
 
+                {/* Info mostra a hora */}
                 <i className={styles.date_container}>
                     {typeof window !== 'undefined' && currentDate}
                 </i>
+                {/*  */}
 
             </form>
         </div>
