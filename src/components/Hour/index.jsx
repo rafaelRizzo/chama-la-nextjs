@@ -13,7 +13,7 @@ export const Hour = () => {
         const intervalId = setInterval(() => {
             let day = new Date().getDate()
             let month = new Date().getMonth() + 1
-            let year = new Date().getFullYear() + 1
+            let year = new Date().getFullYear()
             let hour = new Date().getHours()
             let minute = new Date().getMinutes()
             let seconds = new Date().getSeconds()
