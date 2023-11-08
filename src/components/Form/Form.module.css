@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 100vw;
+    min-height: 100vh;
+    padding: 10px;
+    position: relative;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 10px 10px 20px rgba(22, 22, 22, .2);
+    border-radius: .5rem;
+    padding: 20px 30px;
+    min-width: 450px;
+    min-height: 480px;
+    text-align: center;
+    transition: border .2s ease;
+}
+
+.container form h1 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.container form>svg {
+    margin: auto;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.container form .container_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container .container_textarea,
+.container .container_textarea div {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
+.container .container_textarea input {
+    padding-right: 20px !important;
+}
+
+.container .container_tooltip {
+    position: absolute !important;
+    top: 2px;
+    right: -5px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .container_tooltip svg {
+    font-size: 1.2rem;
+}
+
+.container .container_btn {
+    display: flex;
+    background-color: #50C878;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+}
+
+.container .container_btn:hover {
+    background-color: #45ab67;
+}
+
+.container .container_btn svg {
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.container form:focus-within {
+    border-color: #4dabf5;
+}
+
+.container .date_container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, .5);
+    font-size: .8rem;
+}
+
+@media (max-width: 768px) {
+    .container form {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
