@@ -51,9 +51,17 @@ export const Form = () => {
 
         // Abra a página do WhatsApp com a URL apropriada
         if (isChecked) {
+            if (cookieExists) {
+                const whatsappURL = `https://api.whatsapp.com/send?1=pt_BR&phone=55${numberValue}&text=${cookieExists}`;
+                window.open(whatsappURL, '_blank');
+            }
             const whatsappURL = `https://api.whatsapp.com/send?1=pt_BR&phone=55${numberValue}`;
             window.open(whatsappURL, '_blank');
         } else {
+            if (cookieExists) {
+                const whatsappURL = `https://web.whatsapp.com/send?phone=55${numberValue}&text=${cookieExists}`;
+                window.open(whatsappURL, '_blank');
+            }
             const whatsappURL = `https://web.whatsapp.com/send?phone=55${numberValue}`;
             window.open(whatsappURL, '_blank');
         }
