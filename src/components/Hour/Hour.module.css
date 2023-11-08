@@ -1,0 +1,7 @@
+.date_container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, .5);
+    font-size: .8rem;
+}

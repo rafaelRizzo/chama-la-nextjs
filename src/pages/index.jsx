@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Form } from "@/components/Form";
 import { useState, useEffect } from 'react';
+import { Hour } from '@/components/Hour';
 
 const darkTheme = createTheme({
     palette: {
@@ -31,6 +32,10 @@ export default function Home() {
                 <div className="container_ball">
                     <div className='ball-moving' style={{ left: movingX + 'px', top: movingY + 'px' }}></div>
                     <Form />
+                    <div className='hour'>
+                        <Hour />
+                    </div>
+
                 </div>
             </ThemeProvider>
         </>

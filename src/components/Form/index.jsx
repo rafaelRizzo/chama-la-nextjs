@@ -15,7 +15,6 @@ import Switch from '@mui/material/Switch';
 export const Form = () => {
     const [numberToCall, setNumberToCall] = useState(''); // Hook para o input do numero
     const [cookieExists, setCookieExists] = useState(''); // Hook para o textarea da mensagem custom
-    const [currentDate, setCurrentDate] = useState(''); // Hook para a hora
     const [isChecked, setIsChecked] = useState(true);  // Hook para o select
     const [error, setError] = useState(false); // Hook para validação do input 
 
@@ -81,20 +80,8 @@ export const Form = () => {
         }
     }, []);
 
-    // Atualizando a data atual a cada segundo
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentDate(`${new Date().getHours()}h`);
-        }, 1000);
-
-        // Limpar o intervalo quando o componente é desmontado
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
-
     return (
-        <div className={styles.container} >
+        <div className={styles.container}>
             <form action="" onSubmit={handleFormSubmit}>
                 <RiWhatsappFill />
                 <h1>Inicializador de Conversa</h1>
@@ -150,12 +137,6 @@ export const Form = () => {
                 {/* Info mostra Linkedin */}
                 <i>
                     <a href="https://www.linkedin.com/in/rafael-rizzo-breschi-b02547216/" target="_blank">Powered - Rafael Rizzo</a>
-                </i>
-                {/*  */}
-
-                {/* Info mostra a hora */}
-                <i className={styles.date_container}>
-                    {typeof window !== 'undefined' && currentDate}
                 </i>
                 {/*  */}
 
