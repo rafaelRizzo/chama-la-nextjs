@@ -12,6 +12,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.17",
+    "@vercel/speed-insights": "^1.0.4",
     "js-cookie": "^3.0.5",
     "next": "14.0.1",
     "react": "^18",
