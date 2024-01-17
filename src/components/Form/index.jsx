@@ -15,7 +15,7 @@ import Switch from '@mui/material/Switch';
 export const Form = () => {
     const [numberToCall, setNumberToCall] = useState(''); // Hook para o input do numero
     const [cookieExists, setCookieExists] = useState(''); // Hook para o textarea da mensagem custom
-    const [isChecked, setIsChecked] = useState(true);  // Hook para o select
+    const [isChecked, setIsChecked] = useState(false);  // Hook para o select
     const [error, setError] = useState(false); // Hook para validação do input 
 
     const handleSwitchChange = (event) => { // Função para alterar o estado do select
@@ -25,10 +25,24 @@ export const Form = () => {
     const isNumeric = (str) => { // Use uma expressão regular para verificar se a string contém apenas números
         return /^\d+$/.test(str);
     };
+    // Função para formatar o número
+    const formatPhoneNumber = (phoneNumber) => {
+        // Remova todos os caracteres não numéricos
+        const formattedNumber = phoneNumber.replace(/\D/g, '');
+
+        // Remova os espaços em branco
+        const trimmedNumber = formattedNumber.trim();
+
+        return trimmedNumber;
+    };
 
     const handleFormSubmit = (event) => { // Função para manipular o form
         event.preventDefault();
-        let numberValue = numberToCall // Definindo a variável para receber o state do input número
+        let numberValue = numberToCall;
+
+        // Formate o número antes de usar
+        numberValue = formatPhoneNumber(numberValue);
+
         let textareaValue = event.target.querySelector("#outlined-multiline-static").value; // Definindo variável para receber o valor da mensagem custom
 
         // Função para verificar se o campo de entrada contém apenas números
