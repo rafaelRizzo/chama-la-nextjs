@@ -4,4 +4,4 @@ Projeto feito em nextJS a fim de estudos e ajudar os colegas de trabalho e quem 
  
 <img src="https://github.com/rafaelRizzo/chama-la-nextjs/blob/main/chama-la.png">
 
-<a href="https://chama-la.rafael-rizzo.com/" target="_blank">Veja aqui cliquando aqui</a>
+<a href="https://chama-la.rafael-rizzo.com/" target="_blank">Veja clicando aqui</a>
