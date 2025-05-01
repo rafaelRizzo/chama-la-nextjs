@@ -13,6 +13,7 @@ RUN npm install
 # Copie o resto dos arquivos do projeto para o diretório de trabalho
 COPY . .
 
+# Construa o aplicativo Next.js
 RUN npm run build
 
 # Comando para iniciar o aplicativo Next.js quando o contêiner for iniciado
